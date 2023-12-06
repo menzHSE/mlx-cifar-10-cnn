@@ -7,6 +7,9 @@ It heavily borrows from the mnist example in https://github.com/ml-explore/mlx-e
 * Install https://github.com/ml-explore/mlx
 * torchvision
 
+# Limitations
+* mlx does not yet include pooling layers, see https://github.com/ml-explore/mlx/issues/25
+
 # Run
 `python cnn.py --gpu`
 
