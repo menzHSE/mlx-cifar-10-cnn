@@ -5,7 +5,7 @@ It heavily borrows from the mnist example in https://github.com/ml-explore/mlx-e
 # Requirements
 * Machine with Apple silicon (M1/M2/M3)
 * mlx (tested with version 0.0.3). Install using instructions on https://github.com/ml-explore/mlx
-* torchvision
+* torchvision (for handling CIFAR-10)
 
 # Limitations
 * mlx does not yet include pooling layers, see https://github.com/ml-explore/mlx/issues/25
