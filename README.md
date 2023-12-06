@@ -4,7 +4,7 @@ It heavily borrows from the mnist example in https://github.com/ml-explore/mlx-e
 
 # Requirements
 * Machine with Apple silicon (M1/M2/M3)
-* Install https://github.com/ml-explore/mlx
+* mlx (tested with version 0.0.3). Install using instructions on https://github.com/ml-explore/mlx
 * torchvision
 
 # Limitations
