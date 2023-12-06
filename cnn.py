@@ -53,7 +53,7 @@ def batch_iterate(batch_size, X, y):
 def main():
     seed = 0     
     batch_size = 16
-    num_epochs = 10
+    num_epochs = 15
     learning_rate = 3e-4
     np.random.seed(seed)
 
