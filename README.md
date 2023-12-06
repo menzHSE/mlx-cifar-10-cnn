@@ -19,15 +19,20 @@ Downloading https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz to ./data/ci
 100.0%
 Extracting ./data/cifar-10-python.tar.gz to ./data
 Starting training ...
-Epoch 0: Loss 1.53476, Train accuracy 0.528, Test accuracy 0.523, Time 25.004 (s)
-Epoch 1: Loss 1.27585, Train accuracy 0.585, Test accuracy 0.568, Time 23.399 (s)
-Epoch 2: Loss 1.16578, Train accuracy 0.611, Test accuracy 0.591, Time 27.832 (s)
-Epoch 3: Loss 1.08704, Train accuracy 0.644, Test accuracy 0.611, Time 28.561 (s)
-Epoch 4: Loss 1.02331, Train accuracy 0.668, Test accuracy 0.627, Time 28.774 (s)
-Epoch 5: Loss 0.96585, Train accuracy 0.679, Test accuracy 0.624, Time 29.023 (s)
-Epoch 6: Loss 0.91720, Train accuracy 0.696, Test accuracy 0.631, Time 28.765 (s)
-Epoch 7: Loss 0.86825, Train accuracy 0.703, Test accuracy 0.637, Time 27.920 (s)
-Epoch 8: Loss 0.82499, Train accuracy 0.734, Test accuracy 0.649, Time 28.059 (s)
-Epoch 9: Loss 0.78654, Train accuracy 0.752, Test accuracy 0.655, Time 28.645 (s)
-Test accuracy 0.655
+Epoch 0: Loss 1.53577, Train accuracy 0.530, Test accuracy 0.523, Time 27.800 (s)
+Epoch 1: Loss 1.27640, Train accuracy 0.582, Test accuracy 0.565, Time 28.480 (s)
+Epoch 2: Loss 1.16963, Train accuracy 0.607, Test accuracy 0.583, Time 20.685 (s)
+Epoch 3: Loss 1.09031, Train accuracy 0.644, Test accuracy 0.612, Time 21.257 (s)
+Epoch 4: Loss 1.02532, Train accuracy 0.668, Test accuracy 0.630, Time 20.396 (s)
+Epoch 5: Loss 0.96800, Train accuracy 0.677, Test accuracy 0.625, Time 20.876 (s)
+Epoch 6: Loss 0.92005, Train accuracy 0.697, Test accuracy 0.633, Time 20.771 (s)
+Epoch 7: Loss 0.87206, Train accuracy 0.697, Test accuracy 0.631, Time 20.479 (s)
+Epoch 8: Loss 0.83043, Train accuracy 0.731, Test accuracy 0.650, Time 21.005 (s)
+Epoch 9: Loss 0.79088, Train accuracy 0.750, Test accuracy 0.660, Time 20.711 (s)
+Epoch 10: Loss 0.75901, Train accuracy 0.756, Test accuracy 0.652, Time 20.860 (s)
+Epoch 11: Loss 0.72243, Train accuracy 0.773, Test accuracy 0.660, Time 20.788 (s)
+Epoch 12: Loss 0.68936, Train accuracy 0.789, Test accuracy 0.665, Time 20.514 (s)
+Epoch 13: Loss 0.65548, Train accuracy 0.794, Test accuracy 0.663, Time 20.826 (s)
+Epoch 14: Loss 0.62693, Train accuracy 0.814, Test accuracy 0.663, Time 21.430 (s)
+Test accuracy 0.663
 ```
