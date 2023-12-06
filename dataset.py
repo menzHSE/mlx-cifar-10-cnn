@@ -4,7 +4,6 @@
 # It heavily borrows from the mnist example in https://github.com/ml-explore/mlx-examples
 
 import torchvision
-import torchvision.transforms as transforms
 import numpy as np
 from PIL import Image
 
@@ -14,12 +13,11 @@ def cifar10(save_dir="./data"):
     # Initialize a dictionary to store the CIFAR10 data
     cifar10Data = {}
 
+    # Load the CIFAR10 training and test datasets
     # Use torchvision to download the dataset 
     # https://github.com/ml-explore/mlx-data might come in handy in the future
     cifar10TrainSet = torchvision.datasets.CIFAR10(root=save_dir, train=True,  download=True, transform=None)
-    cifar10TestSet  = torchvision.datasets.CIFAR10(root=save_dir, train=False, download=True, transform=None)
-
-    # Load the CIFAR10 training and test datasets
+    cifar10TestSet  = torchvision.datasets.CIFAR10(root=save_dir, train=False, download=True, transform=None) 
 
     # Convert training data to NumPy arrays
     cifar10Data["training_images"] = np.array([np.array(img).reshape(32, 32, 3) for img, _ in cifar10TrainSet])
