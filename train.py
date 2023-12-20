@@ -77,13 +77,13 @@ def train_epoch(model, tr_iter, loss_and_grad_fn, optimizer, epoch):
 
     
 
-def train(batch_size, num_epochs, learning_rate):
+def train(batch_size, num_epochs, learning_rate, cifar_version):
        
     # Load the training and test data
-    tr_iter, test_iter = dataset.cifar10(batch_size)
+    tr_iter, test_iter = dataset.cifar(batch_size, cifar_version)
 
     # Load the model
-    cnn = model.CNN()
+    cnn = model.CNN(num_classes=10 if cifar_version == "CIFAR-10" else 100)
     # Allocate memory and initialize parameters
     mx.eval(cnn.parameters())
     print("Number of trainable params: {:0.04f} M".format(cnn.num_params() / 1e6))
@@ -119,17 +119,20 @@ def train(batch_size, num_epochs, learning_rate):
         )     
 
         # save model
-        save_model(cnn, "model", e)       
+        save_model(cnn, "model_"+cifar_version, e)       
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser("Train a simple CNN on CIFAR-10 with mlx.")
+    parser = argparse.ArgumentParser("Train a simple CNN on CIFAR-10 / CIFAR_100 with mlx.")
 
     parser.add_argument("--cpu", action="store_true", help="Use CPU instead of Metal GPU acceleration")
     parser.add_argument("--seed", type=int, default=0, help="Random seed")
     parser.add_argument("--batchsize", type=int, default=32, help="Batch size for training")
     parser.add_argument("--epochs", type=int, default=15, help="Number of training epochs")
     parser.add_argument("--lr", type=float, default=3e-4, help="Learning rate")
+    parser.add_argument("--dataset", type=str, choices=['CIFAR-10', 'CIFAR-100'], default='CIFAR-10', 
+                        help="Select the dataset to use (CIFAR-10 or CIFAR-100)")
+
      
     args = parser.parse_args()
 
@@ -145,5 +148,6 @@ if __name__ == "__main__":
     print(f"  Batch size: {args.batchsize}")
     print(f"  Number of epochs: {args.epochs}")
     print(f"  Learning rate: {args.lr}")
+    print(f"  Dataset: {args.dataset}")
 
-    train(args.batchsize, args.epochs, args.lr)
+    train(args.batchsize, args.epochs, args.lr, args.dataset)
