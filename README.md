@@ -15,7 +15,7 @@ Small CIFAR-10 CNN implementation in Apple mlx. Used to try-out the first public
 This uses a first gen 16GB Macbook Pro M1. 
 
 ```
-(mlx-m1-2023-12) $ python train.py
+$ python train.py
 Options:
   Device: GPU
   Seed: 0
@@ -25,28 +25,28 @@ Options:
 Downloading https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz 162.6MiB (9.4MiB/s) 
 Number of trainable params: 0.3570 M 
 Starting training ...
-Epoch    0: Loss 1.59012, Train accuracy 0.517, Test accuracy 0.515, Throughput 2064.38 images/second,  Time 24.960 (s)
-Epoch    1: Loss 1.28264, Train accuracy 0.568, Test accuracy 0.555, Throughput 1858.34 images/second,  Time 27.714 (s)
-Epoch    2: Loss 1.15834, Train accuracy 0.600, Test accuracy 0.577, Throughput 1835.21 images/second,  Time 28.119 (s)
-Epoch    3: Loss 1.08163, Train accuracy 0.628, Test accuracy 0.599, Throughput 1886.10 images/second,  Time 27.431 (s)
-Epoch    4: Loss 1.02606, Train accuracy 0.640, Test accuracy 0.612, Throughput 1829.63 images/second,  Time 28.562 (s)
-Epoch    5: Loss 0.98446, Train accuracy 0.662, Test accuracy 0.629, Throughput 1873.30 images/second,  Time 27.566 (s)
-Epoch    6: Loss 0.94463, Train accuracy 0.675, Test accuracy 0.635, Throughput 1891.81 images/second,  Time 27.382 (s)
-Epoch    7: Loss 0.91536, Train accuracy 0.675, Test accuracy 0.627, Throughput 1901.21 images/second,  Time 27.366 (s)
-Epoch    8: Loss 0.88837, Train accuracy 0.694, Test accuracy 0.650, Throughput 1875.42 images/second,  Time 27.911 (s)
-Epoch    9: Loss 0.86175, Train accuracy 0.697, Test accuracy 0.644, Throughput 1860.57 images/second,  Time 28.070 (s)
-Epoch   10: Loss 0.83467, Train accuracy 0.706, Test accuracy 0.649, Throughput 1891.46 images/second,  Time 27.286 (s)
-Epoch   11: Loss 0.81078, Train accuracy 0.714, Test accuracy 0.650, Throughput 1867.83 images/second,  Time 27.600 (s)
-Epoch   12: Loss 0.79714, Train accuracy 0.729, Test accuracy 0.663, Throughput 1938.69 images/second,  Time 26.697 (s)
-Epoch   13: Loss 0.78267, Train accuracy 0.733, Test accuracy 0.662, Throughput 1844.71 images/second,  Time 28.192 (s)
-Epoch   14: Loss 0.76080, Train accuracy 0.739, Test accuracy 0.662, Throughput 1845.13 images/second,  Time 27.991 (s)
+Epoch    0: Loss 1.60110, Train accuracy 0.507, Test accuracy 0.507, Throughput 2237.00 images/second,  Time 23.205 (s)
+Epoch    1: Loss 1.29622, Train accuracy 0.554, Test accuracy 0.548, Throughput 2220.12 images/second,  Time 23.258 (s)
+Epoch    2: Loss 1.17690, Train accuracy 0.591, Test accuracy 0.573, Throughput 2195.28 images/second,  Time 23.869 (s)
+Epoch    3: Loss 1.10781, Train accuracy 0.615, Test accuracy 0.603, Throughput 2225.02 images/second,  Time 23.269 (s)
+Epoch    4: Loss 1.05267, Train accuracy 0.638, Test accuracy 0.619, Throughput 2189.69 images/second,  Time 23.625 (s)
+Epoch    5: Loss 1.01267, Train accuracy 0.653, Test accuracy 0.630, Throughput 2168.93 images/second,  Time 23.842 (s)
+Epoch    6: Loss 0.97861, Train accuracy 0.660, Test accuracy 0.638, Throughput 2230.18 images/second,  Time 23.264 (s)
+Epoch    7: Loss 0.95356, Train accuracy 0.674, Test accuracy 0.649, Throughput 2251.04 images/second,  Time 23.060 (s)
+Epoch    8: Loss 0.92774, Train accuracy 0.686, Test accuracy 0.655, Throughput 2183.01 images/second,  Time 23.734 (s)
+Epoch    9: Loss 0.90558, Train accuracy 0.688, Test accuracy 0.659, Throughput 2217.17 images/second,  Time 23.674 (s)
+Epoch   10: Loss 0.88850, Train accuracy 0.702, Test accuracy 0.667, Throughput 2207.08 images/second,  Time 23.689 (s)
+Epoch   11: Loss 0.86691, Train accuracy 0.698, Test accuracy 0.662, Throughput 2160.21 images/second,  Time 24.074 (s)
+Epoch   12: Loss 0.85118, Train accuracy 0.705, Test accuracy 0.667, Throughput 2206.40 images/second,  Time 23.481 (s)
+Epoch   13: Loss 0.83440, Train accuracy 0.716, Test accuracy 0.677, Throughput 2246.39 images/second,  Time 23.018 (s)
+Epoch   14: Loss 0.82287, Train accuracy 0.715, Test accuracy 0.672, Throughput 2174.63 images/second,  Time 23.819 (s)
 ```
 
 # Test
 ```
-(mlx-m1-2023-12) $ python test.py  --model model_014.npz
+$ python test.py  --model model_014.npz
 Loaded model from model_014.npz
 Starting testing ...
 ....
-Test accuracy: 0.6621328808784485
+Test accuracy: 0.6712260246276855
 ```
