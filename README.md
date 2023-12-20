@@ -1,10 +1,9 @@
 # mlx-cifar-10-cnn
-Small CIFAR-10 CNN implementation in Apple mlx. Used to try-out the first public version of https://github.com/ml-explore/mlx
-It heavily borrows from the CIFAR example in https://github.com/ml-explore/mlx-examples
+Small CIFAR-10 CNN implementation in Apple mlx. Used to try-out the first public version of https://github.com/ml-explore/mlx. It heavily borrows from the CIFAR example in https://github.com/ml-explore/mlx-examples
 
 # Requirements
 * Machine with Apple SoC (M1/M2/M3)
-* mlx (https://github.com/ml-explore/mlx), tested with version 0.0.5. Install using instructions on https://github.com/ml-explore/mlx
+* mlx (https://github.com/ml-explore/mlx), tested with version 0.0.5.
 * mlx-data (https://github.com/ml-explore/mlx-data)
 
 # Limitations
@@ -20,10 +19,11 @@ This uses a first gen 16GB Macbook Pro M1.
 Options:
   Device: GPU
   Seed: 0
-  Batch size: 64
-  Number of epochs: 20
-  Learning rate: 0.0005
-Downloading https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz 162.6MiB (9.4MiB/s)  
+  Batch size: 32
+  Number of epochs: 15
+  Learning rate: 0.0003
+Downloading https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz 162.6MiB (9.4MiB/s) 
+Number of trainable params: 0.3570 M 
 Starting training ...
 Epoch    0: Loss 1.59012, Train accuracy 0.517, Test accuracy 0.515, Throughput 2064.38 images/second,  Time 24.960 (s)
 Epoch    1: Loss 1.28264, Train accuracy 0.568, Test accuracy 0.555, Throughput 1858.34 images/second,  Time 27.714 (s)
