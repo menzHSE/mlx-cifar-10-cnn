@@ -6,12 +6,42 @@ import os
 import math
 import numpy as np
 from PIL import Image
-from mlx.data.datasets import load_cifar10
+from mlx.data.datasets import load_cifar10, load_cifar100
+
+def cifar(batch_size, cifar_version="CIFAR-10", root=None):
+    if (cifar_version == "CIFAR-10"):
+        return cifar10(batch_size, root)
+    elif (cifar_version == "CIFAR-100"):
+        return cifar100(batch_size, root)
+    else:
+        raise ValueError(f"Unknown CIFAR version: {cifar_version}")
 
 def cifar10(batch_size, root=None):
     # load train and test sets using mlx-data
     tr = load_cifar10(root=root, train=True)
     test = load_cifar10(root=root, train=False)
+   
+    # normalize to [0,1]
+    def normalize(x):
+        return x.astype("float32") / 255.0
+      
+    # iterator over training set
+    tr_iter = (
+        tr.shuffle()
+        .to_stream()
+        .image_random_h_flip("image", prob=0.5)
+        .key_transform("image", normalize)
+        .batch(batch_size)
+    )
+
+    # iterator over training set
+    test_iter = test.to_stream().key_transform("image", normalize).batch(batch_size)
+    return tr_iter, test_iter
+
+def cifar100(batch_size, root=None):
+    # load train and test sets using mlx-data
+    tr = load_cifar100(root=root, train=True)
+    test = load_cifar100(root=root, train=False)
    
     # normalize to [0,1]
     def normalize(x):

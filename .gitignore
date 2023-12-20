@@ -161,3 +161,4 @@ cython_debug/
 data
 mlx-cifar-10-cnn.code-workspace
 model_???.npz
+*.npz
