@@ -1,6 +1,7 @@
 # Markus Enzweiler - markus.enzweiler@hs-esslingen.de
 
 import mlx.nn as nn
+from mlx.utils import tree_flatten
 
 class CNN(nn.Module):
     """A simple CNN for CIFAR-10. """
@@ -8,9 +9,9 @@ class CNN(nn.Module):
     def __init__(self):
         super().__init__()
       
-        self.conv1 = nn.Conv2d(3,        32,  3, stride=2, padding=1)
-        self.conv2 = nn.Conv2d(32,       64,  3, stride=2, padding=1)
-        self.conv3 = nn.Conv2d(64,      128,  3, stride=2, padding=1)
+        self.conv1 = nn.Conv2d(3,        32,  3, stride=2, padding=1, bias=False)
+        self.conv2 = nn.Conv2d(32,       64,  3, stride=2, padding=1, bias=False)
+        self.conv3 = nn.Conv2d(64,      128,  3, stride=2, padding=1, bias=False)
 
         self.fc1   = nn.Linear(4*4*128,  128                        )
         self.fc2   = nn.Linear(128,      10                         )
@@ -44,9 +45,13 @@ class CNN(nn.Module):
         # Input 128   | Output 10    
         x = self.fc2  (x) # no activation, cross_entropy loss applies softmax 
         return x
+    
+    def num_params(self):
+        nparams = sum(x.size for k, x in tree_flatten(self.trainable_parameters()))
+        return nparams
 
     def save(self, fname):
-       self.save_weights(fname)
+        self.save_weights(fname)
 
     def load(self, fname):
-       self.load_weights(fname)
+        self.load_weights(fname)

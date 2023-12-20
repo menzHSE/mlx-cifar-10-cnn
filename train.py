@@ -86,7 +86,7 @@ def train(batch_size, num_epochs, learning_rate):
     cnn = model.CNN()
     # Allocate memory and initialize parameters
     mx.eval(cnn.parameters())
-    #print(cnn.modules())
+    print("Number of trainable params: {:0.04f} M".format(cnn.num_params() / 1e6))
 
     loss_and_grad_fn = nn.value_and_grad(cnn, loss_fn)
     optimizer = optim.AdamW(learning_rate=learning_rate)
