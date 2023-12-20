@@ -1,55 +1,63 @@
 # Markus Enzweiler - markus.enzweiler@hs-esslingen.de
+# This is a based on the cifar example in mlx-example
 
-# This is a simple CNN for CIFAR-10 to tryout mlx. 
-# It heavily borrows from the mnist example in https://github.com/ml-explore/mlx-examples
-
-import torchvision
+import mlx.core as mx
+import os
+import math
 import numpy as np
 from PIL import Image
+from mlx.data.datasets import load_cifar10
 
-
-def cifar10(save_dir="./data"):
-
-    # Initialize a dictionary to store the CIFAR10 data
-    cifar10Data = {}
-
-    # Load the CIFAR10 training and test datasets
-    # Use torchvision to download the dataset 
-    # https://github.com/ml-explore/mlx-data might come in handy in the future
-    cifar10TrainSet = torchvision.datasets.CIFAR10(root=save_dir, train=True,  download=True, transform=None)
-    cifar10TestSet  = torchvision.datasets.CIFAR10(root=save_dir, train=False, download=True, transform=None) 
-
-    # Convert training data to NumPy arrays
-    cifar10Data["training_images"] = np.array([np.array(img).reshape(32, 32, 3) for img, _ in cifar10TrainSet])
-    cifar10Data["training_labels"] = np.array([label for _, label in cifar10TrainSet])
-
-    # Convert test data to NumPy arrays
-    cifar10Data["test_images"] = np.array([np.array(img).reshape(32, 32, 3) for img, _ in cifar10TestSet])
-    cifar10Data["test_labels"] = np.array([label for _, label in cifar10TestSet])
-
-    # Normalize to 0-1
-    preproc = lambda x: x.astype(np.float32) / 255.0
-    cifar10Data["training_images"] = preproc(cifar10Data["training_images"])
-    cifar10Data["test_images"]     = preproc(cifar10Data["test_images"])
-
-    return (
-        cifar10Data["training_images"],
-        cifar10Data["training_labels"].astype(np.uint32),
-        cifar10Data["test_images"],
-        cifar10Data["test_labels"].astype(np.uint32),
+def cifar10(batch_size, root=None):
+    # load train and test sets using mlx-data
+    tr = load_cifar10(root=root, train=True)
+    test = load_cifar10(root=root, train=False)
+   
+    # normalize to [0,1]
+    def normalize(x):
+        return x.astype("float32") / 255.0
+      
+    # iterator over training set
+    tr_iter = (
+        tr.shuffle()
+        .to_stream()     
+        .key_transform("image", normalize)
+        .batch(batch_size)
+        .prefetch(prefetch_size=128, num_threads=8)
     )
+
+    # iterator over training set
+    test_iter = test.to_stream().key_transform("image", normalize).batch(batch_size)
+    return tr_iter, test_iter
 
 
 if __name__ == "__main__":
-    train_x, train_y, test_x, test_y = cifar10()
-    assert train_x.shape == (50000, 32, 32, 3), "Wrong training set size"
-    assert train_y.shape == (50000,), "Wrong training set size"
-    assert test_x.shape  == (10000, 32, 32, 3), "Wrong test set size"
-    assert test_y.shape  == (10000,), "Wrong test set size"
+
+    batch_size = 32
+    tr_iter, test_iter = cifar10(batch_size=batch_size)
+
+    batch_tr_iter = next(tr_iter)
+    assert batch_tr_iter["image"].shape == (batch_size, 32, 32, 3), "Wrong training set size"
+    assert batch_tr_iter["label"].shape == (batch_size,), "Wrong training set size"
+
+
+    batch_test_iter = next(test_iter)
+    assert batch_test_iter["image"].shape == (batch_size, 32, 32, 3), "Wrong training set size"
+    assert batch_test_iter["label"].shape == (batch_size,), "Wrong training set size"
+   
 
     # Save an image as a sanity check
-    image_data = (train_x[123] * 255).astype(np.uint8)
-    img = Image.fromarray(image_data)
-    img.save("/tmp/train123.png")
+        
+    # Get the image data and normalize it
+    img_data = batch_tr_iter["image"][0] * 255
+    img_data = img_data.astype(np.uint8)
+
+    # Save the image using Pillow
+    img = Image.fromarray(img_data)
+    img.save("/tmp/trainTmp.png")
+
+    # Reset the iterators, if necessary
+    tr_iter.reset()
+    test_iter.reset()
 
     print("Dataset prepared successfully!")
