@@ -90,7 +90,6 @@ def train(batch_size, num_epochs, learning_rate):
 
     loss_and_grad_fn = nn.value_and_grad(cnn, loss_fn)
     optimizer = optim.AdamW(learning_rate=learning_rate)
-    #optimizer = optim.Adagrad(learning_rate=learning_rate)
 
     print("Starting training ...")
 
@@ -126,25 +125,25 @@ def train(batch_size, num_epochs, learning_rate):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser("Train a simple CNN on CIFAR-10 with mlx.")
 
-    parser.add_argument("--gpu", action="store_true", help="Use Metal GPU acceleration")
+    parser.add_argument("--cpu", action="store_true", help="Use CPU instead of Metal GPU acceleration")
     parser.add_argument("--seed", type=int, default=0, help="Random seed")
-    parser.add_argument("--batchsize", type=int, default=64, help="Batch size for training")
-    parser.add_argument("--nepoch", type=int, default=20, help="Number of training epochs")
-    parser.add_argument("--lr", type=float, default=5e-4, help="Learning rate")
+    parser.add_argument("--batchsize", type=int, default=32, help="Batch size for training")
+    parser.add_argument("--epochs", type=int, default=15, help="Number of training epochs")
+    parser.add_argument("--lr", type=float, default=3e-4, help="Learning rate")
      
     args = parser.parse_args()
 
-    if not args.gpu:
+    if args.cpu:
         mx.set_default_device(mx.cpu)
 
     np.random.seed(args.seed)
     mx.random.seed(args.seed)
 
     print("Options: ")
-    print(f"  GPU: {args.gpu}")
+    print(f"  Device: {'GPU' if not args.cpu else 'CPU'}")
     print(f"  Seed: {args.seed}")
     print(f"  Batch size: {args.batchsize}")
-    print(f"  Number of epochs: {args.nepoch}")
+    print(f"  Number of epochs: {args.epochs}")
     print(f"  Learning rate: {args.lr}")
 
-    train(args.batchsize, args.nepoch, args.lr)
+    train(args.batchsize, args.epochs, args.lr)

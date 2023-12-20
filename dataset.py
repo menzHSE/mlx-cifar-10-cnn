@@ -20,10 +20,13 @@ def cifar10(batch_size, root=None):
     # iterator over training set
     tr_iter = (
         tr.shuffle()
-        .to_stream()     
+        .to_stream()
+        .image_random_h_flip("image", prob=0.5)
+        .pad("image", 0, 4, 4, 0.0)
+        .pad("image", 1, 4, 4, 0.0)
+        .image_random_crop("image", 32, 32)   
         .key_transform("image", normalize)
         .batch(batch_size)
-        .prefetch(prefetch_size=128, num_threads=8)
     )
 
     # iterator over training set
