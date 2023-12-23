@@ -28,6 +28,7 @@ def test(model_fname, cifar_version):
     # Evaluate the model on the test set
     accs = []
     print("Starting testing ...")
+    cnn.eval()
     for batch_counter, batch in enumerate(test_iter):
         if batch_counter % 100 == 0:
             print(f".", end="", flush=True)

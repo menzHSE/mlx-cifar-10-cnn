@@ -24,6 +24,8 @@ def eval_fn(model, X, y):
     return mx.mean(mx.argmax(model(X), axis=1) == y)
 
 def test_epoch(model, data_iter):
+    # set model to evaluation mode
+    model.eval()
     accs = []
     for batch_counter, batch in enumerate(data_iter):
         X = mx.array(batch["image"])
@@ -40,6 +42,10 @@ def save_model(cnn, name, epoch):
 
 def train_epoch(model, tr_iter, loss_and_grad_fn, optimizer, epoch):
    
+    # set model to training mode
+    model.train()
+
+    # reset stats
     running_loss = 0.0
     running_acc = 0.0
     throughput_list = []
