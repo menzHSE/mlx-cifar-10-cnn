@@ -70,10 +70,10 @@ def train_epoch(model, tr_iter, loss_and_grad_fn, optimizer, epoch):
         running_acc += acc
 
         if batch_count > 0 and (batch_count % 10 == 0):
-            print(f"Epoch {epoch:4d}: Loss {running_loss.item() / batch_count:.5f}, "
-                  f"Batch {batch_count:5d}, "
-                  f"Train accuracy {running_acc.item() / batch_count:.5f}, "
-                  f"Throughput {throughput:.2f} images/second", end="\r")
+            print(f"Epoch {epoch:4d}: Loss {(running_loss.item() / batch_count):6.5f} | "
+                  f"Batch {batch_count:5d} | "
+                  f"Train accuracy {(running_acc.item() / batch_count):6.3f} | "
+                  f"Throughput {throughput:10.2f} images/second", end="\r")
 
         batch_count = batch_count + 1
 
@@ -118,14 +118,15 @@ def train(batch_size, num_epochs, learning_rate, cifar_version):
 
         # print stats
         print(
-            f"Epoch {e:4d}: Loss {running_loss.item() / batch_count:6.5f}, Train accuracy {train_accuracy.item():6.3f}, "
-            f"Test accuracy {test_accuracy.item():6.3f}, "           
-            f"Throughput {samples_per_sec.item():10.2f} images/second, ",
+            f"Epoch {e:4d}: Loss {(running_loss.item() / batch_count):6.5f} | "
+            f"Train accuracy {train_accuracy.item():6.3f} | "
+            f"Test accuracy {test_accuracy.item():6.3f} | "           
+            f"Throughput {samples_per_sec.item():10.2f} images/second | ",
             f"Time {toc - tic:8.3f} (s)"
         )     
 
         # save model
-        save_model(cnn, "model_"+cifar_version, e)       
+        save_model(cnn, "models/model_"+cifar_version, e)       
 
 
 if __name__ == "__main__":

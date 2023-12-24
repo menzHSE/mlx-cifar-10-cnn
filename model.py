@@ -1,5 +1,6 @@
 # Markus Enzweiler - markus.enzweiler@hs-esslingen.de
 
+import os
 import mlx.nn as nn
 from mlx.utils import tree_flatten
 
@@ -56,6 +57,14 @@ class CNN(nn.Module):
         return nparams
 
     def save(self, fname):
+        # Extract the directory path from the file name
+        dir_path = os.path.dirname(fname)
+
+        # Check if the directory exists, and create it if it does not
+        if not os.path.exists(dir_path):
+            os.makedirs(dir_path, exist_ok=True)
+
+        # save the model
         self.save_weights(fname)
 
     def load(self, fname):
