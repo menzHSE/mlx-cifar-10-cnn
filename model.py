@@ -60,11 +60,13 @@ class CNN(nn.Module):
         # Extract the directory path from the file name
         dir_path = os.path.dirname(fname)
 
-        # Check if the directory exists, and create it if it does not
-        if not os.path.exists(dir_path):
-            os.makedirs(dir_path, exist_ok=True)
+        # Check if the directory path is not empty
+        if dir_path:
+            # Check if the directory exists, and create it if it does not
+            if not os.path.exists(dir_path):
+                os.makedirs(dir_path, exist_ok=True)
 
-        # save the model
+        # save the model weights
         self.save_weights(fname)
 
     def load(self, fname):
