@@ -3,7 +3,7 @@ Small CIFAR-10 / CIFAR-100 CNN implementation in Apple mlx. Used to try-out the 
 
 # Requirements
 * Machine with Apple SoC (M1/M2/M3)
-* mlx (https://github.com/ml-explore/mlx), tested with version 0.0.5.
+* mlx (https://github.com/ml-explore/mlx), tested with version 0.0.6.
 * mlx-data (https://github.com/ml-explore/mlx-data)
 
 # Limitations
