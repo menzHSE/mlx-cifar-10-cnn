@@ -10,7 +10,7 @@ See https://github.com/menzHSE/torch-cifar-10-cnn for (more or less) the same mo
 
 # Limitations
 * mlx does not yet include pooling layers, see https://github.com/ml-explore/mlx/issues/25, so we use strided convolution width `stride=2` for subsampling
-* mlx does not yet include batch norm, see https://github.com/ml-explore/mlx/pull/217, so we use layer norm instead
+* mlx does not yet include batch norm, see https://github.com/ml-explore/mlx/pull/217
 * there seem to be some performance issues (with 2D convolutions?) vs. PyTorch with the MPS backend on Apple SoCs, see https://github.com/ml-explore/mlx/issues/243
 
 # Usage

@@ -118,10 +118,10 @@ def train(batch_size, num_epochs, learning_rate, cifar_version):
 
         # print stats
         print(
-            f"Epoch {e:4d}: Loss {running_loss.item() / batch_count:.5f}, Train accuracy {train_accuracy.item():.3f}, "
-            f"Test accuracy {test_accuracy.item():.3f}, "           
-            f"Throughput {samples_per_sec.item():.2f} images/second, ",
-            f"Time {toc - tic:.3f} (s)"
+            f"Epoch {e:4d}: Loss {running_loss.item() / batch_count:6.5f}, Train accuracy {train_accuracy.item():6.3f}, "
+            f"Test accuracy {test_accuracy.item():6.3f}, "           
+            f"Throughput {samples_per_sec.item():10.2f} images/second, ",
+            f"Time {toc - tic:8.3f} (s)"
         )     
 
         # save model
@@ -133,7 +133,7 @@ if __name__ == "__main__":
 
     parser.add_argument("--cpu", action="store_true", help="Use CPU instead of Metal GPU acceleration")
     parser.add_argument("--seed", type=int, default=0, help="Random seed")
-    parser.add_argument("--batchsize", type=int, default=128, help="Batch size for training")
+    parser.add_argument("--batchsize", type=int, default=64, help="Batch size for training")
     parser.add_argument("--epochs", type=int, default=30, help="Number of training epochs")
     parser.add_argument("--lr", type=float, default=3e-4, help="Learning rate")
     parser.add_argument("--dataset", type=str, choices=['CIFAR-10', 'CIFAR-100'], default='CIFAR-10', 

@@ -19,36 +19,27 @@ class CNN(nn.Module):
         self.conv5 = nn.Conv2d   (64,      128, 3, stride=1, padding=1)
         self.conv6 = nn.Conv2d   (128,     128, 3, stride=2, padding=1)
 
-        # mlx=0.0.6 does not have BatchNorm yet, so we use LayerNorm instead
-        self.ln1  = nn.LayerNorm( 32)
-        self.ln2  = nn.LayerNorm( 32)
-        self.ln3  = nn.LayerNorm( 64)
-        self.ln4  = nn.LayerNorm( 64)
-        self.ln5  = nn.LayerNorm(128)
-        self.ln6  = nn.LayerNorm(128)
-
         self.fc1   = nn.Linear(4*4*128,  128             )
         self.fc2   = nn.Linear(128,      self.num_classes)
 
         self.drop  = nn.Dropout(0.25)
 
 
-
     def __call__(self, x):
       
         # Input 32x32x3  | Output 16x16x32
-        x = nn.relu   (self.ln1(self.conv1(x)))        
-        x = nn.relu   (self.ln2(self.conv2(x)))        
+        x = nn.relu   (self.conv1(x))        
+        x = nn.relu   (self.conv2(x))        
         x = self.drop (x)
        
         # Input 16x16x32 | Output 8x8x64
-        x = nn.relu   (self.ln3(self.conv3(x)))        
-        x = nn.relu   (self.ln4(self.conv4(x)))        
+        x = nn.relu   (self.conv3(x))        
+        x = nn.relu   (self.conv4(x))        
         x = self.drop (x)
 
         # Input 8x8x64 | Output 4x4x128
-        x = nn.relu   (self.ln5(self.conv5(x)))        
-        x = nn.relu   (self.ln6(self.conv6(x)))        
+        x = nn.relu   (self.conv5(x))        
+        x = nn.relu   (self.conv6(x))        
         x = self.drop (x)        
 
         # MLP classifier on top
