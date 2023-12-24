@@ -1,5 +1,5 @@
 # mlx-cifar-10-cnn
-Small CIFAR-10 / CIFAR-100 CNN implementation in Apple mlx. Used to try-out the first public version of https://github.com/ml-explore/mlx. It heavily borrows from the CIFAR example in https://github.com/ml-explore/mlx-examples
+Small CIFAR-10 / CIFAR-100 CNN ResNet-like implementation in Apple mlx, see https://github.com/ml-explore/mlx. 
 
 See https://github.com/menzHSE/torch-cifar-10-cnn for (more or less) the same model being trained using PyTorch.
 
@@ -61,38 +61,38 @@ Options:
   Number of epochs: 30
   Learning rate: 0.0003
   Dataset: CIFAR-10
-Number of trainable params: 0.5506 M
+Number of trainable params: 0.5723 M
 Starting training ...
-Epoch    0: Loss 1.72772 | Train accuracy  0.473 | Test accuracy  0.473 | Throughput    1270.61 images/second |  Time   40.551 (s)
-Epoch    1: Loss 1.38787 | Train accuracy  0.551 | Test accuracy  0.546 | Throughput    1225.06 images/second |  Time   42.347 (s)
-Epoch    2: Loss 1.24764 | Train accuracy  0.596 | Test accuracy  0.588 | Throughput    1218.43 images/second |  Time   42.610 (s)
-Epoch    3: Loss 1.15085 | Train accuracy  0.629 | Test accuracy  0.615 | Throughput    1216.17 images/second |  Time   42.685 (s)
-Epoch    4: Loss 1.08930 | Train accuracy  0.653 | Test accuracy  0.641 | Throughput    1216.78 images/second |  Time   42.674 (s)
-Epoch    5: Loss 1.03501 | Train accuracy  0.670 | Test accuracy  0.651 | Throughput    1223.72 images/second |  Time   42.787 (s)
-Epoch    6: Loss 0.99111 | Train accuracy  0.682 | Test accuracy  0.658 | Throughput    1218.57 images/second |  Time   42.598 (s)
-Epoch    7: Loss 0.94907 | Train accuracy  0.702 | Test accuracy  0.674 | Throughput    1216.33 images/second |  Time   42.690 (s)
-Epoch    8: Loss 0.92009 | Train accuracy  0.716 | Test accuracy  0.686 | Throughput    1216.33 images/second |  Time   42.691 (s)
-Epoch    9: Loss 0.88479 | Train accuracy  0.724 | Test accuracy  0.695 | Throughput    1189.44 images/second |  Time   44.431 (s)
-Epoch   10: Loss 0.85970 | Train accuracy  0.739 | Test accuracy  0.707 | Throughput    1156.15 images/second |  Time   45.419 (s)
-Epoch   11: Loss 0.83244 | Train accuracy  0.741 | Test accuracy  0.709 | Throughput    1200.47 images/second |  Time   43.423 (s)
-Epoch   12: Loss 0.80880 | Train accuracy  0.750 | Test accuracy  0.719 | Throughput    1212.16 images/second |  Time   42.863 (s)
-Epoch   13: Loss 0.79200 | Train accuracy  0.761 | Test accuracy  0.726 | Throughput    1221.41 images/second |  Time   42.526 (s)
-Epoch   14: Loss 0.76958 | Train accuracy  0.766 | Test accuracy  0.727 | Throughput    1211.73 images/second |  Time   42.883 (s)
-Epoch   15: Loss 0.74821 | Train accuracy  0.781 | Test accuracy  0.742 | Throughput    1211.81 images/second |  Time   42.877 (s)
-Epoch   16: Loss 0.73170 | Train accuracy  0.778 | Test accuracy  0.738 | Throughput    1210.92 images/second |  Time   42.913 (s)
-Epoch   17: Loss 0.71408 | Train accuracy  0.788 | Test accuracy  0.741 | Throughput    1212.25 images/second |  Time   42.860 (s)
-Epoch   18: Loss 0.69373 | Train accuracy  0.796 | Test accuracy  0.751 | Throughput    1209.89 images/second |  Time   42.947 (s)
-Epoch   19: Loss 0.68047 | Train accuracy  0.805 | Test accuracy  0.762 | Throughput    1207.62 images/second |  Time   43.037 (s)
-Epoch   20: Loss 0.66610 | Train accuracy  0.814 | Test accuracy  0.764 | Throughput    1209.67 images/second |  Time   42.948 (s)
-Epoch   21: Loss 0.64284 | Train accuracy  0.816 | Test accuracy  0.762 | Throughput    1208.19 images/second |  Time   43.006 (s)
-Epoch   22: Loss 0.63892 | Train accuracy  0.817 | Test accuracy  0.765 | Throughput    1212.51 images/second |  Time   42.847 (s)
-Epoch   23: Loss 0.62249 | Train accuracy  0.827 | Test accuracy  0.772 | Throughput    1208.26 images/second |  Time   43.011 (s)
-Epoch   24: Loss 0.60894 | Train accuracy  0.834 | Test accuracy  0.779 | Throughput    1210.83 images/second |  Time   42.900 (s)
-Epoch   25: Loss 0.59800 | Train accuracy  0.837 | Test accuracy  0.778 | Throughput    1208.11 images/second |  Time   43.017 (s)
-Epoch   26: Loss 0.58398 | Train accuracy  0.844 | Test accuracy  0.781 | Throughput    1208.90 images/second |  Time   42.980 (s)
-Epoch   27: Loss 0.57689 | Train accuracy  0.843 | Test accuracy  0.778 | Throughput    1209.56 images/second |  Time   42.958 (s)
-Epoch   28: Loss 0.56539 | Train accuracy  0.851 | Test accuracy  0.783 | Throughput    1218.75 images/second |  Time   42.567 (s)
-Epoch   29: Loss 0.54964 | Train accuracy  0.851 | Test accuracy  0.782 | Throughput    1261.20 images/second |  Time   40.929 (s)
+Epoch    0: Loss 1.58751 | Train accuracy  0.539 | Test accuracy  0.533 | Throughput     933.11 images/second |  Time   56.130 (s)
+Epoch    1: Loss 1.20771 | Train accuracy  0.625 | Test accuracy  0.607 | Throughput     933.00 images/second |  Time   56.044 (s)
+Epoch    2: Loss 1.05997 | Train accuracy  0.668 | Test accuracy  0.641 | Throughput     935.98 images/second |  Time   55.864 (s)
+Epoch    3: Loss 0.96530 | Train accuracy  0.701 | Test accuracy  0.670 | Throughput     933.35 images/second |  Time   56.084 (s)
+Epoch    4: Loss 0.89180 | Train accuracy  0.727 | Test accuracy  0.691 | Throughput     932.51 images/second |  Time   56.115 (s)
+Epoch    5: Loss 0.83689 | Train accuracy  0.748 | Test accuracy  0.705 | Throughput     930.56 images/second |  Time   56.279 (s)
+Epoch    6: Loss 0.78752 | Train accuracy  0.761 | Test accuracy  0.716 | Throughput     931.91 images/second |  Time   56.168 (s)
+Epoch    7: Loss 0.74867 | Train accuracy  0.775 | Test accuracy  0.727 | Throughput     931.87 images/second |  Time   56.164 (s)
+Epoch    8: Loss 0.71237 | Train accuracy  0.785 | Test accuracy  0.731 | Throughput     931.34 images/second |  Time   56.165 (s)
+Epoch    9: Loss 0.67609 | Train accuracy  0.803 | Test accuracy  0.742 | Throughput     930.87 images/second |  Time   56.221 (s)
+Epoch   10: Loss 0.64472 | Train accuracy  0.808 | Test accuracy  0.749 | Throughput     931.13 images/second |  Time   56.187 (s)
+Epoch   11: Loss 0.61530 | Train accuracy  0.822 | Test accuracy  0.756 | Throughput     932.78 images/second |  Time   56.100 (s)
+Epoch   12: Loss 0.59308 | Train accuracy  0.830 | Test accuracy  0.757 | Throughput     929.90 images/second |  Time   56.277 (s)
+Epoch   13: Loss 0.57011 | Train accuracy  0.838 | Test accuracy  0.762 | Throughput     949.81 images/second |  Time   55.166 (s)
+Epoch   14: Loss 0.54330 | Train accuracy  0.849 | Test accuracy  0.771 | Throughput     929.69 images/second |  Time   56.269 (s)
+Epoch   15: Loss 0.52460 | Train accuracy  0.860 | Test accuracy  0.777 | Throughput     928.88 images/second |  Time   56.307 (s)
+Epoch   16: Loss 0.50588 | Train accuracy  0.865 | Test accuracy  0.776 | Throughput     934.33 images/second |  Time   55.993 (s)
+Epoch   17: Loss 0.49043 | Train accuracy  0.872 | Test accuracy  0.776 | Throughput     933.06 images/second |  Time   56.090 (s)
+Epoch   18: Loss 0.47078 | Train accuracy  0.880 | Test accuracy  0.781 | Throughput     927.28 images/second |  Time   56.424 (s)
+Epoch   19: Loss 0.46172 | Train accuracy  0.889 | Test accuracy  0.785 | Throughput     932.43 images/second |  Time   56.086 (s)
+Epoch   20: Loss 0.44215 | Train accuracy  0.895 | Test accuracy  0.787 | Throughput     932.54 images/second |  Time   56.130 (s)
+Epoch   21: Loss 0.42690 | Train accuracy  0.893 | Test accuracy  0.784 | Throughput     930.14 images/second |  Time   56.232 (s)
+Epoch   22: Loss 0.41342 | Train accuracy  0.897 | Test accuracy  0.782 | Throughput     931.18 images/second |  Time   56.184 (s)
+Epoch   23: Loss 0.40281 | Train accuracy  0.908 | Test accuracy  0.788 | Throughput     929.88 images/second |  Time   56.251 (s)
+Epoch   24: Loss 0.38836 | Train accuracy  0.912 | Test accuracy  0.787 | Throughput     930.10 images/second |  Time   56.276 (s)
+Epoch   25: Loss 0.38196 | Train accuracy  0.910 | Test accuracy  0.789 | Throughput     931.56 images/second |  Time   56.145 (s)
+Epoch   26: Loss 0.37404 | Train accuracy  0.921 | Test accuracy  0.792 | Throughput     930.78 images/second |  Time   56.198 (s)
+Epoch   27: Loss 0.36139 | Train accuracy  0.923 | Test accuracy  0.788 | Throughput     930.01 images/second |  Time   56.264 (s)
+Epoch   28: Loss 0.35089 | Train accuracy  0.921 | Test accuracy  0.784 | Throughput     931.65 images/second |  Time   56.154 (s)
+Epoch   29: Loss 0.34075 | Train accuracy  0.933 | Test accuracy  0.791 | Throughput     931.90 images/second |  Time   56.139 (s)
 ```
 
 ### Test on CIFAR-10
@@ -101,7 +101,7 @@ $ python test.py  --model models/model_CIFAR-10_029.npz
 Loaded model for CIFAR-10 from  models/model_CIFAR-10_029.npz
 Starting testing ...
 ....
-Test accuracy: 0.7815495133399963
+Test accuracy: 0.7912495133399963
 ```
 
 ## CIFAR-100
@@ -120,38 +120,38 @@ Options:
   Number of epochs: 30
   Learning rate: 0.0003
   Dataset: CIFAR-100
-Number of trainable params: 0.5622 M
+Number of trainable params: 0.5839 M
 Starting training ...
-Epoch    0: Loss 4.13097 | Train accuracy  0.125 | Test accuracy  0.119 | Throughput    1219.93 images/second |  Time   42.611 (s)
-Epoch    1: Loss 3.58333 | Train accuracy  0.183 | Test accuracy  0.179 | Throughput    1227.56 images/second |  Time   42.218 (s)
-Epoch    2: Loss 3.32894 | Train accuracy  0.226 | Test accuracy  0.224 | Throughput    1231.47 images/second |  Time   42.069 (s)
-Epoch    3: Loss 3.16587 | Train accuracy  0.260 | Test accuracy  0.247 | Throughput    1228.64 images/second |  Time   42.154 (s)
-Epoch    4: Loss 3.04211 | Train accuracy  0.286 | Test accuracy  0.272 | Throughput    1227.03 images/second |  Time   42.209 (s)
-Epoch    5: Loss 2.94239 | Train accuracy  0.301 | Test accuracy  0.285 | Throughput    1226.65 images/second |  Time   42.239 (s)
-Epoch    6: Loss 2.85935 | Train accuracy  0.322 | Test accuracy  0.299 | Throughput    1227.32 images/second |  Time   42.205 (s)
-Epoch    7: Loss 2.78884 | Train accuracy  0.341 | Test accuracy  0.313 | Throughput    1226.52 images/second |  Time   42.237 (s)
-Epoch    8: Loss 2.72798 | Train accuracy  0.349 | Test accuracy  0.324 | Throughput    1226.55 images/second |  Time   42.223 (s)
-Epoch    9: Loss 2.65516 | Train accuracy  0.366 | Test accuracy  0.336 | Throughput    1238.99 images/second |  Time   41.737 (s)
-Epoch   10: Loss 2.60537 | Train accuracy  0.382 | Test accuracy  0.345 | Throughput    1247.58 images/second |  Time   41.414 (s)
-Epoch   11: Loss 2.55005 | Train accuracy  0.390 | Test accuracy  0.352 | Throughput    1250.44 images/second |  Time   41.288 (s)
-Epoch   12: Loss 2.50623 | Train accuracy  0.403 | Test accuracy  0.359 | Throughput    1235.72 images/second |  Time   41.887 (s)
-Epoch   13: Loss 2.45849 | Train accuracy  0.421 | Test accuracy  0.368 | Throughput    1233.92 images/second |  Time   41.965 (s)
-Epoch   14: Loss 2.42022 | Train accuracy  0.431 | Test accuracy  0.379 | Throughput    1230.91 images/second |  Time   42.068 (s)
-Epoch   15: Loss 2.38206 | Train accuracy  0.440 | Test accuracy  0.385 | Throughput    1254.49 images/second |  Time   41.143 (s)
-Epoch   16: Loss 2.33949 | Train accuracy  0.450 | Test accuracy  0.390 | Throughput    1225.65 images/second |  Time   42.284 (s)
-Epoch   17: Loss 2.30976 | Train accuracy  0.456 | Test accuracy  0.391 | Throughput    1239.16 images/second |  Time   41.761 (s)
-Epoch   18: Loss 2.26624 | Train accuracy  0.467 | Test accuracy  0.398 | Throughput    1227.50 images/second |  Time   42.213 (s)
-Epoch   19: Loss 2.23414 | Train accuracy  0.469 | Test accuracy  0.398 | Throughput    1227.06 images/second |  Time   42.237 (s)
-Epoch   20: Loss 2.20615 | Train accuracy  0.483 | Test accuracy  0.408 | Throughput    1224.38 images/second |  Time   42.347 (s)
-Epoch   21: Loss 2.17266 | Train accuracy  0.490 | Test accuracy  0.408 | Throughput    1227.01 images/second |  Time   42.241 (s)
-Epoch   22: Loss 2.14304 | Train accuracy  0.502 | Test accuracy  0.415 | Throughput    1224.37 images/second |  Time   42.346 (s)
-Epoch   23: Loss 2.11957 | Train accuracy  0.506 | Test accuracy  0.419 | Throughput    1224.29 images/second |  Time   42.353 (s)
-Epoch   24: Loss 2.08617 | Train accuracy  0.516 | Test accuracy  0.426 | Throughput    1225.07 images/second |  Time   42.326 (s)
-Epoch   25: Loss 2.06267 | Train accuracy  0.515 | Test accuracy  0.424 | Throughput    1231.51 images/second |  Time   42.074 (s)
-Epoch   26: Loss 2.03589 | Train accuracy  0.520 | Test accuracy  0.425 | Throughput    1222.18 images/second |  Time   42.465 (s)
-Epoch   27: Loss 2.01222 | Train accuracy  0.533 | Test accuracy  0.429 | Throughput    1233.59 images/second |  Time   41.998 (s)
-Epoch   28: Loss 1.99446 | Train accuracy  0.536 | Test accuracy  0.433 | Throughput    1247.90 images/second |  Time   41.708 (s)
-Epoch   29: Loss 1.96215 | Train accuracy  0.550 | Test accuracy  0.433 | Throughput    1256.37 images/second |  Time   41.311 (s)
+Epoch    0: Loss 3.94354 | Train accuracy  0.168 | Test accuracy  0.159 | Throughput     939.33 images/second |  Time   55.598 (s)
+Epoch    1: Loss 3.29697 | Train accuracy  0.251 | Test accuracy  0.240 | Throughput     934.35 images/second |  Time   55.906 (s)
+Epoch    2: Loss 2.98886 | Train accuracy  0.300 | Test accuracy  0.285 | Throughput     940.89 images/second |  Time   55.574 (s)
+Epoch    3: Loss 2.79632 | Train accuracy  0.340 | Test accuracy  0.314 | Throughput     939.58 images/second |  Time   55.710 (s)
+Epoch    4: Loss 2.65143 | Train accuracy  0.371 | Test accuracy  0.330 | Throughput     934.43 images/second |  Time   55.972 (s)
+Epoch    5: Loss 2.52931 | Train accuracy  0.394 | Test accuracy  0.349 | Throughput     932.86 images/second |  Time   56.099 (s)
+Epoch    6: Loss 2.43186 | Train accuracy  0.416 | Test accuracy  0.365 | Throughput     929.37 images/second |  Time   56.275 (s)
+Epoch    7: Loss 2.34618 | Train accuracy  0.436 | Test accuracy  0.374 | Throughput     932.51 images/second |  Time   56.114 (s)
+Epoch    8: Loss 2.27019 | Train accuracy  0.454 | Test accuracy  0.384 | Throughput     931.55 images/second |  Time   56.167 (s)
+Epoch    9: Loss 2.20327 | Train accuracy  0.470 | Test accuracy  0.390 | Throughput     931.12 images/second |  Time   56.179 (s)
+Epoch   10: Loss 2.13615 | Train accuracy  0.487 | Test accuracy  0.402 | Throughput     929.37 images/second |  Time   56.291 (s)
+Epoch   11: Loss 2.07444 | Train accuracy  0.502 | Test accuracy  0.408 | Throughput     928.65 images/second |  Time   56.354 (s)
+Epoch   12: Loss 2.02129 | Train accuracy  0.520 | Test accuracy  0.415 | Throughput     928.31 images/second |  Time   56.324 (s)
+Epoch   13: Loss 1.96446 | Train accuracy  0.529 | Test accuracy  0.415 | Throughput     930.53 images/second |  Time   56.242 (s)
+Epoch   14: Loss 1.91196 | Train accuracy  0.544 | Test accuracy  0.425 | Throughput     929.58 images/second |  Time   56.277 (s)
+Epoch   15: Loss 1.86621 | Train accuracy  0.555 | Test accuracy  0.427 | Throughput     928.72 images/second |  Time   56.314 (s)
+Epoch   16: Loss 1.82444 | Train accuracy  0.574 | Test accuracy  0.438 | Throughput     943.28 images/second |  Time   55.533 (s)
+Epoch   17: Loss 1.77800 | Train accuracy  0.586 | Test accuracy  0.446 | Throughput     929.21 images/second |  Time   56.293 (s)
+Epoch   18: Loss 1.73693 | Train accuracy  0.600 | Test accuracy  0.446 | Throughput     930.99 images/second |  Time   56.206 (s)
+Epoch   19: Loss 1.70420 | Train accuracy  0.607 | Test accuracy  0.450 | Throughput     939.47 images/second |  Time   55.673 (s)
+Epoch   20: Loss 1.66383 | Train accuracy  0.621 | Test accuracy  0.450 | Throughput     932.04 images/second |  Time   56.137 (s)
+Epoch   21: Loss 1.62749 | Train accuracy  0.630 | Test accuracy  0.454 | Throughput     930.05 images/second |  Time   56.253 (s)
+Epoch   22: Loss 1.59953 | Train accuracy  0.642 | Test accuracy  0.458 | Throughput     929.75 images/second |  Time   56.281 (s)
+Epoch   23: Loss 1.56418 | Train accuracy  0.645 | Test accuracy  0.456 | Throughput     930.32 images/second |  Time   56.283 (s)
+Epoch   24: Loss 1.52951 | Train accuracy  0.655 | Test accuracy  0.457 | Throughput     928.47 images/second |  Time   56.385 (s)
+Epoch   25: Loss 1.50257 | Train accuracy  0.671 | Test accuracy  0.463 | Throughput     926.21 images/second |  Time   56.488 (s)
+Epoch   26: Loss 1.48180 | Train accuracy  0.675 | Test accuracy  0.464 | Throughput     928.57 images/second |  Time   56.338 (s)
+Epoch   27: Loss 1.45204 | Train accuracy  0.678 | Test accuracy  0.463 | Throughput     932.04 images/second |  Time   56.133 (s)
+Epoch   28: Loss 1.42580 | Train accuracy  0.691 | Test accuracy  0.471 | Throughput     927.45 images/second |  Time   56.682 (s)
+Epoch   29: Loss 1.40150 | Train accuracy  0.697 | Test accuracy  0.468 | Throughput     933.55 images/second |  Time   56.095 (s)
 
 ```
 
@@ -161,5 +161,5 @@ $ python test.py  --model models/model_CIFAR-100_029.npz --dataset=CIFAR-100
 Loaded model for CIFAR-100 from models/model_CIFAR-100_029.npz
 Starting testing ...
 ....
-Test accuracy: 0.43310701847076416
+Test accuracy: 0.46810701847076416
 ```
