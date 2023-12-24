@@ -10,16 +10,17 @@ from mlx.data.datasets import load_cifar10, load_cifar100
 
 def cifar(batch_size, cifar_version="CIFAR-10", root=None):
     if (cifar_version == "CIFAR-10"):
-        return cifar10(batch_size, root)
+        return cifar_loader(batch_size, load_cifar10,  root=root)
     elif (cifar_version == "CIFAR-100"):
-        return cifar100(batch_size, root)
+        return cifar_loader(batch_size, load_cifar100, root=root)
     else:
         raise ValueError(f"Unknown CIFAR version: {cifar_version}")
+    
 
-def cifar10(batch_size, root=None):
+def cifar_loader(batch_size, load_fn, root=None):
     # load train and test sets using mlx-data
-    tr = load_cifar10(root=root, train=True)
-    test = load_cifar10(root=root, train=False)
+    tr   = load_fn(root=root, train=True)
+    test = load_fn(root=root, train=False)
    
     # normalize to [0,1]
     def normalize(x):
@@ -37,34 +38,11 @@ def cifar10(batch_size, root=None):
     # iterator over training set
     test_iter = test.to_stream().key_transform("image", normalize).batch(batch_size)
     return tr_iter, test_iter
-
-def cifar100(batch_size, root=None):
-    # load train and test sets using mlx-data
-    tr = load_cifar100(root=root, train=True)
-    test = load_cifar100(root=root, train=False)
-   
-    # normalize to [0,1]
-    def normalize(x):
-        return x.astype("float32") / 255.0
-      
-    # iterator over training set
-    tr_iter = (
-        tr.shuffle()
-        .to_stream()
-        .image_random_h_flip("image", prob=0.5)
-        .key_transform("image", normalize)
-        .batch(batch_size)
-    )
-
-    # iterator over training set
-    test_iter = test.to_stream().key_transform("image", normalize).batch(batch_size)
-    return tr_iter, test_iter
-
 
 if __name__ == "__main__":
 
     batch_size = 32
-    tr_iter, test_iter = cifar10(batch_size=batch_size)
+    tr_iter, test_iter = cifar(batch_size=batch_size)
 
     batch_tr_iter = next(tr_iter)
     assert batch_tr_iter["image"].shape == (batch_size, 32, 32, 3), "Wrong training set size"
