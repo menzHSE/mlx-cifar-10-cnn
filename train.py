@@ -133,7 +133,7 @@ if __name__ == "__main__":
 
     parser.add_argument("--cpu", action="store_true", help="Use CPU instead of Metal GPU acceleration")
     parser.add_argument("--seed", type=int, default=0, help="Random seed")
-    parser.add_argument("--batchsize", type=int, default=32, help="Batch size for training")
+    parser.add_argument("--batchsize", type=int, default=128, help="Batch size for training")
     parser.add_argument("--epochs", type=int, default=30, help="Number of training epochs")
     parser.add_argument("--lr", type=float, default=3e-4, help="Learning rate")
     parser.add_argument("--dataset", type=str, choices=['CIFAR-10', 'CIFAR-100'], default='CIFAR-10', 
