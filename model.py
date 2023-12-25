@@ -1,9 +1,11 @@
 # Markus Enzweiler - markus.enzweiler@hs-esslingen.de
 
 import os
+import mlx.core as mx
 import mlx.nn as nn
 from mlx.utils import tree_flatten
 
+import norm
 class CNN(nn.Module):
     """A simple CNN for CIFAR-10 / CIFAR-100. """
 
@@ -26,6 +28,14 @@ class CNN(nn.Module):
         self.conv_skip4 = nn.Conv2d( 64,  64, 1, stride=2, padding=0)
         self.conv_skip6 = nn.Conv2d(128, 128, 1, stride=2, padding=0)
 
+
+        self.bn1 = norm.BatchNorm1d( 32)
+        self.bn2 = norm.BatchNorm1d( 32)
+        self.bn3 = norm.BatchNorm1d( 64)
+        self.bn4 = norm.BatchNorm1d( 64)
+        self.bn5 = norm.BatchNorm1d(128)
+        self.bn6 = norm.BatchNorm1d(128)
+
         self.fc1   = nn.Linear(4*4*128,  128             )
         self.fc2   = nn.Linear(128,      self.num_classes)
     
@@ -41,20 +51,20 @@ class CNN(nn.Module):
         # the addition as in the original ResNet paper.
       
         # Input 32x32x3  | Output 16x16x32
-        x =                      nn.relu (self.conv1(x))        
-        x = self.conv_skip2(x) + nn.relu (self.conv2(x)) # residual connection      
+        x =                      nn.relu (self.bn1(self.conv1(x)))        
+        x = self.conv_skip2(x) + nn.relu (self.bn2(self.conv2(x))) # residual connection      
         #x = nn.relu (self.conv_skip2(x) + self.conv2(x)) # residual connection     
         x = self.drop (x)
        
         # Input 16x16x32 | Output 8x8x64
-        x =                      nn.relu (self.conv3(x))        
-        x = self.conv_skip4(x) + nn.relu (self.conv4(x)) # residual connection                
+        x =                      nn.relu (self.bn3(self.conv3(x)))        
+        x = self.conv_skip4(x) + nn.relu (self.bn4(self.conv4(x))) # residual connection                
         #x = nn.relu (self.conv_skip4(x) + self.conv4(x)) # residual connection    
         x = self.drop (x)
 
         # Input 8x8x64 | Output 4x4x128
-        x =                      nn.relu (self.conv5(x))        
-        x = self.conv_skip6(x) + nn.relu (self.conv6(x)) # residual connection                    
+        x =                      nn.relu (self.bn5(self.conv5(x)))        
+        x = self.conv_skip6(x) + nn.relu (self.bn6(self.conv6(x))) # residual connection                    
         #x = nn.relu (self.conv_skip6(x) + self.conv6(x)) # residual connection
         x = self.drop (x)        
 
