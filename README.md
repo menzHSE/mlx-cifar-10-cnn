@@ -1,5 +1,5 @@
 # mlx-cifar-10-cnn
-Small CIFAR-10 / CIFAR-100 CNN ResNet-like implementation in Apple mlx, see https://github.com/ml-explore/mlx. 
+Small CIFAR-10 / CIFAR-100 CNN ResNet-like implementation in Apple MLX, see https://github.com/ml-explore/mlx. This is based on the CIFAR example in [MLX-examples](https://github.com/ml-explore/mlx-examples/tree/main/cifar). 
 
 See https://github.com/menzHSE/torch-cifar-10-cnn for (more or less) the same model being trained using PyTorch.
 
