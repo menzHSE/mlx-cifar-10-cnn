@@ -61,7 +61,7 @@ def train_epoch(model, tr_iter, loss_and_grad_fn, optimizer, epoch):
         (loss, acc), grads  = loss_and_grad_fn(model, X, y)
         optimizer.update(model, grads)
         # Evaluate updated model parameters
-        mx.eval(model.parameters(), optimizer.state, retain_graph=True)
+        mx.eval(model.parameters(), optimizer.state)
 
         throughput_toc = time.perf_counter()
         throughput = X.shape[0] / (throughput_toc - throughput_tic)
