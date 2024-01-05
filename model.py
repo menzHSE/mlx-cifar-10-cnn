@@ -29,12 +29,12 @@ class CNN(nn.Module):
         self.conv_skip6 = nn.Conv2d(128, 128, 1, stride=2, padding=0)
 
 
-        self.bn1 = norm.BatchNorm1d( 32)
-        self.bn2 = norm.BatchNorm1d( 32)
-        self.bn3 = norm.BatchNorm1d( 64)
-        self.bn4 = norm.BatchNorm1d( 64)
-        self.bn5 = norm.BatchNorm1d(128)
-        self.bn6 = norm.BatchNorm1d(128)
+        self.bn1 = nn.BatchNorm( 32, track_running_stats=False)
+        self.bn2 = nn.BatchNorm( 32, track_running_stats=False)
+        self.bn3 = nn.BatchNorm( 64, track_running_stats=False)
+        self.bn4 = nn.BatchNorm( 64, track_running_stats=False)
+        self.bn5 = nn.BatchNorm(128, track_running_stats=False)
+        self.bn6 = nn.BatchNorm(128, track_running_stats=False)
 
         self.fc1   = nn.Linear(4*4*128,  128             )
         self.fc2   = nn.Linear(128,      self.num_classes)
