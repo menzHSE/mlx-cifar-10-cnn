@@ -1,7 +1,8 @@
 import mlx.core as mx
 import mlx.nn as nn
 
-class BatchNorm1d(nn.Module):    
+
+class BatchNorm1d(nn.Module):
     def __init__(self, dims: int, eps: float = 1e-5, affine: bool = True):
         super().__init__()
         if affine:
