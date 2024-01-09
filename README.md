@@ -15,8 +15,10 @@ See https://github.com/menzHSE/torch-cifar-10-cnn for (more or less) the same mo
 # Usage
 ```
 $ python train.py -h
-usage: Train a simple CNN on CIFAR-10 / CIFAR_100 with mlx. [-h] [--cpu] [--seed SEED] [--batchsize BATCHSIZE] [--epochs EPOCHS]
-                                                            [--lr LR] [--dataset {CIFAR-10,CIFAR-100}]
+usage: train.py [-h] [--cpu] [--seed SEED] [--batchsize BATCHSIZE] [--epochs EPOCHS] [--lr LR]
+                [--dataset {CIFAR-10,CIFAR-100}]
+
+Train a simple CNN on CIFAR-10 / CIFAR_100 with mlx.
 
 options:
   -h, --help            show this help message and exit
@@ -31,8 +33,10 @@ options:
 ```
 
 ```
-python test.py -h
-usage: Test a simple CNN on CIFAR-10 / CIFAR-100 with mlx. [-h] [--cpu] --model MODEL [--dataset {CIFAR-10,CIFAR-100}]
+$ python test.py -h
+usage: test.py [-h] [--cpu] --model MODEL [--dataset {CIFAR-10,CIFAR-100}]
+
+Test a simple CNN on CIFAR-10 / CIFAR-100 with mlx.
 
 options:
   -h, --help            show this help message and exit

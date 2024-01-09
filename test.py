@@ -47,7 +47,7 @@ def test(model_fname, cifar_version):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        "Test a simple CNN on CIFAR-10 / CIFAR-100 with mlx."
+        description="Test a simple CNN on CIFAR-10 / CIFAR-100 with mlx."
     )
 
     parser.add_argument(
