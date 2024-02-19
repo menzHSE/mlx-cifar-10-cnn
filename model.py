@@ -19,24 +19,26 @@ class CNN(nn.Module):
 
         # mlx=0.0.6 does not have MaxPool2d yet, so we use stride=2 in Conv2d instead
         self.conv1 = nn.Conv2d(3, 32, 3, stride=1, padding=1)
-        self.conv2 = nn.Conv2d(32, 32, 3, stride=2, padding=1)
+        self.conv2 = nn.Conv2d(32, 32, 3, stride=1, padding=1)
         self.conv3 = nn.Conv2d(32, 64, 3, stride=1, padding=1)
-        self.conv4 = nn.Conv2d(64, 64, 3, stride=2, padding=1)
+        self.conv4 = nn.Conv2d(64, 64, 3, stride=1, padding=1)
         self.conv5 = nn.Conv2d(64, 128, 3, stride=1, padding=1)
-        self.conv6 = nn.Conv2d(128, 128, 3, stride=2, padding=1)
+        self.conv6 = nn.Conv2d(128, 128, 3, stride=1, padding=1)
+
+        self.pool = nn.MaxPool2d(kernel_size=2, stride=2)
 
         # Poor man's ResNet ...
         # skip connections (learned 1x1 convolutions with stride=2 to match dimensions)
-        self.conv_skip2 = nn.Conv2d(32, 32, 1, stride=2, padding=0)
-        self.conv_skip4 = nn.Conv2d(64, 64, 1, stride=2, padding=0)
-        self.conv_skip6 = nn.Conv2d(128, 128, 1, stride=2, padding=0)
+        self.conv_skip2 = nn.Conv2d(32, 32, 1, stride=1, padding=0)
+        self.conv_skip4 = nn.Conv2d(64, 64, 1, stride=1, padding=0)
+        self.conv_skip6 = nn.Conv2d(128, 128, 1, stride=1, padding=0)
 
-        self.bn1 = nn.BatchNorm(32, track_running_stats=False)
-        self.bn2 = nn.BatchNorm(32, track_running_stats=False)
-        self.bn3 = nn.BatchNorm(64, track_running_stats=False)
-        self.bn4 = nn.BatchNorm(64, track_running_stats=False)
-        self.bn5 = nn.BatchNorm(128, track_running_stats=False)
-        self.bn6 = nn.BatchNorm(128, track_running_stats=False)
+        self.bn1 = nn.BatchNorm(32)
+        self.bn2 = nn.BatchNorm(32)
+        self.bn3 = nn.BatchNorm(64)
+        self.bn4 = nn.BatchNorm(64)
+        self.bn5 = nn.BatchNorm(128)
+        self.bn6 = nn.BatchNorm(128)
 
         self.fc1 = nn.Linear(4 * 4 * 128, 128)
         self.fc2 = nn.Linear(128, self.num_classes)
@@ -54,18 +56,21 @@ class CNN(nn.Module):
         x = nn.relu(self.bn1(self.conv1(x)))
         x = self.conv_skip2(x) + nn.relu(self.bn2(self.conv2(x)))  # residual connection
         # x = nn.relu (self.conv_skip2(x) + self.conv2(x)) # residual connection
+        x = self.pool(x)
         x = self.drop(x)
 
         # Input 16x16x32 | Output 8x8x64
         x = nn.relu(self.bn3(self.conv3(x)))
         x = self.conv_skip4(x) + nn.relu(self.bn4(self.conv4(x)))  # residual connection
         # x = nn.relu (self.conv_skip4(x) + self.conv4(x)) # residual connection
+        x = self.pool(x)
         x = self.drop(x)
 
         # Input 8x8x64 | Output 4x4x128
         x = nn.relu(self.bn5(self.conv5(x)))
         x = self.conv_skip6(x) + nn.relu(self.bn6(self.conv6(x)))  # residual connection
         # x = nn.relu (self.conv_skip6(x) + self.conv6(x)) # residual connection
+        x = self.pool(x)
         x = self.drop(x)
 
         # MLP classifier on top

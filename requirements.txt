@@ -1,4 +1,4 @@
-mlx
+mlx>=0.3.0
 mlx-data
 numpy
 Pillow
